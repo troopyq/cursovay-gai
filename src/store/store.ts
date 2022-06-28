@@ -1,9 +1,12 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import userReducer from './reducers/userReducer'
+import {userReducer} from './reducers/userReducer'
+import {formReducer} from './reducers/formReducer'
+import {adminReducer} from './reducers/adminReducer'
 
 const rootReducer = combineReducers({
   userReducer,
-  
+  formReducer,
+  adminReducer,
 })
 
 export const setupStore = () => configureStore({

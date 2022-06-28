@@ -79,5 +79,8 @@ function checkAuth(){
   }
 }
 
+function processFields($val){
+  return trim(htmlspecialchars($val));
+}
 
 

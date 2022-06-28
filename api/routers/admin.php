@@ -20,7 +20,7 @@ function route($method, $urlData, $formData) {
     if (isset($POST)) {
 
       $POST = array_map('processFields', $POST);
-      $email = $POST['email'];
+      $login = $POST['login'];
       $password = $POST['password'];
 
       if ($email !== '' && $password !== '') {
@@ -28,14 +28,14 @@ function route($method, $urlData, $formData) {
         //добавляем в базу нового юзера
         $check = mysqli_query(
           $db,
-          "SELECT * FROM `users` WHERE `email` = '$email'"
+          "SELECT * FROM `admins` WHERE `login` = '$login'"
         );
         if (mysqli_num_rows($check) > 0){
           // $user = mysqli_fetch_all($check, MYSQLI_ASSOC);
           $user = mysqli_fetch_assoc($check);
-          if (!password_verify($password, $user['password'])){
+          if ($password != $user['password']){
             $errors["code"] = 401;
-            $errors["message"] = "Почта или пароль неверны";
+            $errors["message"] = "Логин или пароль неверны";
 
             response(401, $errors);
             exit();
@@ -66,22 +66,19 @@ function route($method, $urlData, $formData) {
   }
 
   if($method === 'GET'){
-    $POST = json_decode(file_get_contents('php://input'), TRUE) ?? $_POST;
-
-    $token = $_GET['token'];
+    $headers = getallheaders()['Authorization'] ?? getallheaders()['authorization']; // получаем контент авторизации
+    $token = explode(' ', $headers)[1] ?? $_GET['token']; //получаем сам токен
     if ($token) {
       $check = mysqli_query(
         $db,
-        "SELECT * FROM `users` WHERE `token` = '$token'"
+        "SELECT * FROM `admins` WHERE `token` = '$token'"
       );
       if (mysqli_num_rows($check) > 0){
-        $data = mysqli_fetch_all($check, MYSQLI_ASSOC);
-        $res = [
-          "status" => true,
-          "data" => $data[0]
-        ];
+        $user = mysqli_fetch_assoc($check);
+        unset($user["password"]);
 
-        response(200, $res);
+
+        response(200, $user);
       } else {
         response(401, ["status" => false, "message" => "неверный токен"]);
       }

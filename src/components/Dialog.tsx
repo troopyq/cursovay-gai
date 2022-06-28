@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import { Outlet } from 'react-router-dom';
+import { Container } from '@mui/system';
 
 const BootstrapDialog = styled(MDialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -53,25 +54,24 @@ export default function Dialog(props: any) {
   const {open, onClose } = props
 
   return (
-    <div>
+
       <BootstrapDialog
         onClose={onClose}
         aria-labelledby="customized-dialog-title"
         open={open}
+        maxWidth='md'
       >
+        <Container sx={{paddingBlock: 5}}>
         <BootstrapDialogTitle id="customized-dialog-title" onClose={onClose}>
          Заявка
         </BootstrapDialogTitle>
         <DialogContent >
           <Outlet />
         </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={onClose}>
-            Save changes
-          </Button>
-        </DialogActions>
+
+        </Container>
         
       </BootstrapDialog>
-    </div>
+
   );
 }

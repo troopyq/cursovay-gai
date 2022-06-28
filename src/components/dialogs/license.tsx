@@ -2,6 +2,7 @@ import { Typography } from '@mui/material';
 import React, { FC } from 'react';
 
 export const License: FC = (props: any) => {
+	console.log(12)
 	return (
 		<>
 			<Typography gutterBottom>

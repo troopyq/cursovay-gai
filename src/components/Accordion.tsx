@@ -9,8 +9,9 @@ import { Button, Container } from '@mui/material';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import Dialog from './Dialog';
-import { Link } from 'react-router-dom';
+
 import { Insurance, License, Penalties, Vehicle } from './dialogs';
+import { Linkk } from './Link';
 
 const Accordion = styled((props: AccordionProps) => (
 	<MuiAccordion disableGutters elevation={0} square {...props} />
@@ -66,7 +67,7 @@ export default function AllAccordions() {
 
 	return (
 		<Container maxWidth='sm'>
-			<Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+			{/* <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
 				<AccordionSummary aria-controls='panel1d-content' id='panel1d-header'>
 					<Typography>Узнать штрафы</Typography>
 				</AccordionSummary>
@@ -75,13 +76,13 @@ export default function AllAccordions() {
 					<Typography>
 						После заполнения формы вам будут показаны все штрафы, которые у вас происходили.
 					</Typography>
-					<Link to='penalties'>
+					<Linkk to='penalties'>
 						<Btn onClick={handleClickOpen}>Заполнить заявку</Btn>
-					</Link>
+					</Linkk>
 				</AccordionDetails>
-			</Accordion>
+			</Accordion> */}
 
-			<Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+			{/* <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
 				<AccordionSummary aria-controls='panel2d-content' id='panel2d-header'>
 					<Typography>Страхование</Typography>
 				</AccordionSummary>
@@ -91,11 +92,11 @@ export default function AllAccordions() {
 						После заполнения формы вашу машину застрахуют в течении 5 дней. Ожидайте ответа на
 						почту, о статусе страхования
 					</Typography>
-					<Link to='insurance'>
+					<Linkk to='insurance'>
 						<Btn onClick={handleClickOpen}>Заполнить заявку</Btn>
-					</Link>
+					</Linkk>
 				</AccordionDetails>
-			</Accordion>
+			</Accordion> */}
 
 			<Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
 				<AccordionSummary aria-controls='panel3d-content' id='panel3d-header'>
@@ -106,13 +107,13 @@ export default function AllAccordions() {
 						Постановка ТС на учет, снятие ТС с учета, перерегистрация ТС, получение дубликатов
 						регистрационных знаков и документов
 					</Typography>
-					<Link to='vehicle'>
+					<Linkk to='vehicle'>
 						<Btn onClick={handleClickOpen}>Заполнить заявку</Btn>
-					</Link>
+					</Linkk>
 				</AccordionDetails>
 			</Accordion>
 
-			<Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+			{/* <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
 				<AccordionSummary aria-controls='panel3d-content' id='panel3d-header'>
 					<Typography>Водительское удостоверение</Typography>
 				</AccordionSummary>
@@ -121,11 +122,12 @@ export default function AllAccordions() {
 						Выдача и замена национального водительского удостоверения, международное водительское
 						удостоверение
 					</Typography>
-					<Link to='license'>
+					<Linkk to='license'>
 						<Btn onClick={handleClickOpen}>Заполнить заявку</Btn>
-					</Link>
+					</Linkk>
 				</AccordionDetails>
-			</Accordion>
+			</Accordion> */}
+			
 			<Routes>
 				<Route path='/' element={<Dialog open={open} onClose={handleClose} />}>
           {/* штрафы              */}

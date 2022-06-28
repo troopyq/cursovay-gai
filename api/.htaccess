@@ -1,4 +1,9 @@
 Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "POST, GET, OPTIONS, DELETE, PUT"
+
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteCond %{HTTP:Authorization} ^(.*)
 RewriteRule ^(.+)$ index.php?q=$1 [L,QSA]
+RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]

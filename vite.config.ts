@@ -4,6 +4,7 @@ import * as path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+	base: '',
   plugins: [react()],
   resolve: {
 		// extensions: [".ts", "tsx", ".scss"],
@@ -19,4 +20,7 @@ export default defineConfig({
 			'@api': path.resolve(__dirname, 'src/api'),
 		},
 	},
+	server: {
+		cors: true
+	}
 })
